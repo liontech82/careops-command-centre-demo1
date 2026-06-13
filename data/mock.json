@@ -1,0 +1,400 @@
+{
+  "provider": {
+    "name": "Brightway Homecare",
+    "week_label": "Week of Mon 9 Jun",
+    "risk": "Amber",
+    "country": "England",
+    "wordmark": "CareOps Systems",
+    "accent_colour": "#6829f6",
+    "demo_today": "2025-06-09"
+  },
+  "staff": [
+    {
+      "id": "stf-001",
+      "name": "Amelia Brooks",
+      "role": "Care assistant",
+      "area": "Leeds North",
+      "readiness": "Ready",
+      "status": "Green",
+      "issue": "All start-of-week checks present.",
+      "action_text": "",
+      "due_label": ""
+    },
+    {
+      "id": "stf-002",
+      "name": "Mina Patel",
+      "role": "Care assistant",
+      "area": "Leeds East",
+      "readiness": "Blocked",
+      "status": "Red",
+      "issue": "Right-to-work copy is missing from the staff file.",
+      "action_text": "Registered manager: obtain Mina Patel's right-to-work copy before assigning visits.",
+      "due_label": "Today",
+      "rank": 3
+    },
+    {
+      "id": "stf-003",
+      "name": "Leon Carter",
+      "role": "Senior carer",
+      "area": "Leeds West",
+      "readiness": "Needs sign-off",
+      "status": "Amber",
+      "issue": "Shadowing sign-off is due this week.",
+      "action_text": "Care coordinator: complete Leon Carter's shadowing sign-off after the next observed visit.",
+      "due_label": "This week",
+      "rank": 11
+    },
+    {
+      "id": "stf-004",
+      "name": "Sophie Reed",
+      "role": "Care assistant",
+      "area": "Wakefield",
+      "readiness": "Ready",
+      "status": "Green",
+      "issue": "Ready for planned visits.",
+      "action_text": "",
+      "due_label": ""
+    },
+    {
+      "id": "stf-005",
+      "name": "Nadia Hussain",
+      "role": "Care assistant",
+      "area": "Leeds South",
+      "readiness": "Due soon",
+      "status": "Amber",
+      "issue": "Induction workbook review is due within 14 days.",
+      "action_text": "Care coordinator: book Nadia Hussain's induction workbook review.",
+      "due_label": "This week",
+      "rank": 15
+    }
+  ],
+  "applicants": [
+    {
+      "id": "app-001",
+      "name": "Harriet Miles",
+      "role_applied": "Weekend care assistant",
+      "stage": "Phone screen overdue",
+      "status": "Red",
+      "issue": "Applicant has not been called back after accepting a phone-screen slot.",
+      "action_text": "Recruitment lead: call Harriet Miles before the weekend rota is finalised.",
+      "due_label": "Today",
+      "rank": 6
+    },
+    {
+      "id": "app-002",
+      "name": "Daniel Okafor",
+      "role_applied": "Care assistant",
+      "stage": "Interview booked",
+      "status": "Green",
+      "issue": "Interview is booked and confirmed.",
+      "action_text": "",
+      "due_label": ""
+    },
+    {
+      "id": "app-003",
+      "name": "Lily Thompson",
+      "role_applied": "Evening care assistant",
+      "stage": "Awaiting callback",
+      "status": "Amber",
+      "issue": "Callback is due within 7 days.",
+      "action_text": "Recruitment lead: call Lily Thompson and confirm availability for evening work.",
+      "due_label": "This week",
+      "rank": 13
+    },
+    {
+      "id": "app-004",
+      "name": "Aisha Khan",
+      "role_applied": "Care assistant",
+      "stage": "Reference request sent",
+      "status": "Amber",
+      "issue": "Reference chase is due within 14 days.",
+      "action_text": "Recruitment lead: chase Aisha Khan's first reference.",
+      "due_label": "This week",
+      "rank": 14
+    }
+  ],
+  "training": [
+    {
+      "id": "trn-001",
+      "staff_name": "Tom Evans",
+      "course": "Medication handling refresher",
+      "due_date": "2025-06-09",
+      "status": "Red",
+      "issue": "Refresher is due now before medication support continues.",
+      "action_text": "Training lead: remove Tom Evans from medication-support visits until refresher evidence is uploaded.",
+      "due_label": "Today",
+      "rank": 4
+    },
+    {
+      "id": "trn-002",
+      "staff_name": "Nadia Hussain",
+      "course": "Moving and handling",
+      "due_date": "2025-06-24",
+      "status": "Amber",
+      "issue": "Refresher is due within 30 days.",
+      "action_text": "Training lead: book Nadia Hussain onto the next moving and handling refresher.",
+      "due_label": "This week",
+      "rank": 9
+    },
+    {
+      "id": "trn-003",
+      "staff_name": "Sophie Reed",
+      "course": "Safeguarding adults",
+      "due_date": "2025-07-02",
+      "status": "Amber",
+      "issue": "Refresher is due within 30 days.",
+      "action_text": "Training lead: assign Sophie Reed's safeguarding refresher module.",
+      "due_label": "This week",
+      "rank": 12
+    },
+    {
+      "id": "trn-004",
+      "staff_name": "Amelia Brooks",
+      "course": "Basic life support",
+      "due_date": "2025-10-18",
+      "status": "Green",
+      "issue": "No action needed this week.",
+      "action_text": "",
+      "due_label": ""
+    }
+  ],
+  "dbs": [
+    {
+      "id": "dbs-001",
+      "staff_name": "Grace Morgan",
+      "certificate_level": "Enhanced DBS",
+      "due_date": "2025-06-07",
+      "status": "Red",
+      "issue": "DBS evidence date has passed.",
+      "action_text": "Compliance lead: pause Grace Morgan's new assignments until updated DBS evidence is recorded.",
+      "due_label": "Today",
+      "rank": 5
+    },
+    {
+      "id": "dbs-002",
+      "staff_name": "Leon Carter",
+      "certificate_level": "Enhanced DBS",
+      "due_date": "2025-06-28",
+      "status": "Amber",
+      "issue": "DBS update check is due within 30 days.",
+      "action_text": "Compliance lead: complete Leon Carter's DBS update-service check.",
+      "due_label": "This week",
+      "rank": 10
+    },
+    {
+      "id": "dbs-003",
+      "staff_name": "Amelia Brooks",
+      "certificate_level": "Enhanced DBS",
+      "due_date": "2026-02-12",
+      "status": "Green",
+      "issue": "No action needed this week.",
+      "action_text": "",
+      "due_label": ""
+    }
+  ],
+  "references": [
+    {
+      "id": "ref-001",
+      "person_name": "Aisha Khan",
+      "reference_type": "Employment reference",
+      "stage": "First reference pending",
+      "status": "Amber",
+      "issue": "First reference has not been returned yet.",
+      "action_text": "Recruitment lead: chase Aisha Khan's first reference.",
+      "due_label": "This week",
+      "rank": 16
+    },
+    {
+      "id": "ref-002",
+      "person_name": "Daniel Okafor",
+      "reference_type": "Character reference",
+      "stage": "Received",
+      "status": "Green",
+      "issue": "Reference is present.",
+      "action_text": "",
+      "due_label": ""
+    }
+  ],
+  "rota_gaps": [
+    {
+      "id": "gap-001",
+      "date": "Tue 10 Jun",
+      "time": "07:00-09:00",
+      "area": "Leeds East",
+      "visits_affected": 3,
+      "status": "Red",
+      "issue": "Morning visits are uncovered.",
+      "action_text": "Rota lead: assign cover for 3 Leeds East morning visits.",
+      "due_label": "Today",
+      "rank": 1
+    },
+    {
+      "id": "gap-002",
+      "date": "Thu 12 Jun",
+      "time": "18:00-20:00",
+      "area": "Leeds South",
+      "visits_affected": 2,
+      "status": "Amber",
+      "issue": "Evening backup cover is not confirmed.",
+      "action_text": "Rota lead: confirm backup cover for Leeds South evening visits.",
+      "due_label": "This week",
+      "rank": 7
+    },
+    {
+      "id": "gap-003",
+      "date": "Sat 14 Jun",
+      "time": "08:00-10:30",
+      "area": "Wakefield",
+      "visits_affected": 1,
+      "status": "Amber",
+      "issue": "One weekend visit needs cover confirmation.",
+      "action_text": "Rota lead: confirm Wakefield weekend cover.",
+      "due_label": "This week",
+      "rank": 8
+    }
+  ],
+  "enquiries": [
+    {
+      "id": "enq-001",
+      "source": "Website form",
+      "type": "Private care enquiry",
+      "area": "Roundhay",
+      "received": "Fri 6 Jun 16:20",
+      "response_state": "Lost",
+      "status": "Red",
+      "issue": "Private enquiry was not answered before the family chose another provider.",
+      "action_text": "Client enquiries: call back the Roundhay family and record the missed private enquiry reason.",
+      "due_label": "Today",
+      "rank": 2
+    },
+    {
+      "id": "enq-002",
+      "source": "Phone",
+      "type": "Care package enquiry",
+      "area": "Headingley",
+      "received": "Mon 9 Jun 09:10",
+      "response_state": "Answered",
+      "status": "Green",
+      "issue": "Answered and logged.",
+      "action_text": "",
+      "due_label": ""
+    },
+    {
+      "id": "enq-003",
+      "source": "Website form",
+      "type": "Respite care enquiry",
+      "area": "Pudsey",
+      "received": "Mon 9 Jun 11:05",
+      "response_state": "Open",
+      "status": "Amber",
+      "issue": "Response is due this week.",
+      "action_text": "Client enquiries: respond to the Pudsey respite enquiry and log the next step.",
+      "due_label": "This week",
+      "rank": 17
+    }
+  ],
+  "referrals": [
+    {
+      "id": "referral-001",
+      "source": "Local authority",
+      "area": "Leeds East",
+      "stage": "Awaiting capacity check",
+      "status": "Amber",
+      "issue": "Capacity decision is due within 7 days.",
+      "action_text": "Care coordinator: confirm whether Leeds East has capacity for the local authority referral.",
+      "due_label": "This week",
+      "rank": 18
+    },
+    {
+      "id": "referral-002",
+      "source": "Hospital discharge team",
+      "area": "Leeds North",
+      "stage": "Accepted",
+      "status": "Green",
+      "issue": "No action needed this week.",
+      "action_text": "",
+      "due_label": ""
+    }
+  ],
+  "compliance": [
+    {
+      "id": "cmp-001",
+      "evidence_area": "Medication audit file",
+      "last_present": "2025-05-01",
+      "recency": "Older than 30 days",
+      "status": "Amber",
+      "issue": "Evidence is present but needs this month's file added.",
+      "action_text": "Compliance lead: upload this month's medication audit evidence.",
+      "due_label": "This week",
+      "rank": 19
+    },
+    {
+      "id": "cmp-002",
+      "evidence_area": "Missed visit review notes",
+      "last_present": "2025-06-03",
+      "recency": "Present this week",
+      "status": "Green",
+      "issue": "Evidence is present and recent.",
+      "action_text": "",
+      "due_label": ""
+    },
+    {
+      "id": "cmp-003",
+      "evidence_area": "Incident follow-up log",
+      "last_present": "2025-05-13",
+      "recency": "Due within 30 days",
+      "status": "Amber",
+      "issue": "Follow-up note is due this month.",
+      "action_text": "Registered manager: add the incident follow-up note to the compliance file.",
+      "due_label": "This week",
+      "rank": 20
+    },
+    {
+      "id": "cmp-004",
+      "evidence_area": "Care plan review sample",
+      "last_present": "2025-06-06",
+      "recency": "Present this week",
+      "status": "Green",
+      "issue": "Evidence is present and recent.",
+      "action_text": "",
+      "due_label": ""
+    }
+  ],
+  "action_plan": [
+    {
+      "rank": 1,
+      "module": "Rota Gaps (7 days)",
+      "status": "Red",
+      "text": "Rota lead: assign cover for 3 Leeds East morning visits.",
+      "due_label": "Today"
+    },
+    {
+      "rank": 2,
+      "module": "Missed Enquiries",
+      "status": "Red",
+      "text": "Client enquiries: call back the Roundhay family and record the missed private enquiry reason.",
+      "due_label": "Today"
+    },
+    {
+      "rank": 3,
+      "module": "Staff Readiness",
+      "status": "Red",
+      "text": "Registered manager: obtain Mina Patel's right-to-work copy before assigning visits.",
+      "due_label": "Today"
+    },
+    {
+      "rank": 4,
+      "module": "Training & DBS Expiry",
+      "status": "Red",
+      "text": "Training lead: remove Tom Evans from medication-support visits until refresher evidence is uploaded.",
+      "due_label": "Today"
+    },
+    {
+      "rank": 5,
+      "module": "Training & DBS Expiry",
+      "status": "Red",
+      "text": "Compliance lead: pause Grace Morgan's new assignments until updated DBS evidence is recorded.",
+      "due_label": "Today"
+    }
+  ]
+}

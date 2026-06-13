@@ -1,0 +1,1511 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CareOps Command Centre Demo</title>
+  <style>
+    :root {
+      --purple-700: #4b16e8;
+      --purple-650: #5a22f0;
+      --purple-600: #6829f6;
+      --purple-500: #8236f6;
+      --cyan-500: #26d0e1;
+      --pink-500: #f252ad;
+      --navy-900: #14294a;
+      --navy-700: #284160;
+      --muted: #8a95a6;
+      --soft: #f6f8fc;
+      --soft-2: #eef3f9;
+      --white: #ffffff;
+      --line: #e4e9f2;
+      --red: #e04d5c;
+      --red-bg: #fff0f2;
+      --amber: #d18a20;
+      --amber-bg: #fff6e7;
+      --green: #27a86f;
+      --green-bg: #edf9f2;
+      --shadow-soft: 0 18px 44px rgba(71, 42, 150, 0.10);
+      --shadow-purple: 0 24px 60px rgba(92, 34, 240, 0.24);
+      --radius: 18px;
+      --focus: 0 0 0 4px rgba(104, 41, 246, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-width: 320px;
+      background: var(--soft);
+    }
+
+    body {
+      margin: 0;
+      color: var(--navy-900);
+      background:
+        radial-gradient(circle at 72% 18%, rgba(104, 41, 246, 0.14), transparent 30%),
+        linear-gradient(180deg, #ffffff 0 190px, var(--soft) 190px 100%);
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .app-shell {
+      width: min(1440px, calc(100% - 44px));
+      margin: 0 auto;
+      padding: 24px 0 52px;
+    }
+
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      margin-bottom: 42px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      color: var(--navy-900);
+      font-size: 1.35rem;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      position: relative;
+      display: inline-block;
+      width: 19px;
+      height: 19px;
+      flex: 0 0 auto;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      border-radius: 4px;
+      background: var(--purple-600);
+    }
+
+    .brand-mark::before {
+      inset: 7px 0;
+    }
+
+    .brand-mark::after {
+      inset: 0 7px;
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 1px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .nav-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .nav-pill,
+    .risk-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 8px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--navy-700);
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 12px 28px rgba(60, 72, 96, 0.06);
+      font-size: 0.86rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .risk-pill {
+      color: var(--white);
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
+      box-shadow: var(--shadow-purple);
+    }
+
+    .nav-pill strong,
+    .risk-pill strong {
+      margin-left: 5px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
+      gap: 44px;
+      align-items: center;
+      margin-bottom: 34px;
+    }
+
+    .hero-copy {
+      max-width: 690px;
+    }
+
+    .client-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--purple-600);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .client-label::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border: 3px solid currentColor;
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      margin: 0;
+      color: var(--navy-900);
+      font-size: clamp(2.3rem, 4.6vw, 5.25rem);
+      line-height: 1.06;
+      font-weight: 300;
+      letter-spacing: 0;
+    }
+
+    .hero h1 strong {
+      display: block;
+      color: var(--purple-650);
+      font-weight: 780;
+    }
+
+    .hero-summary {
+      margin: 24px 0 0;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 1.15rem;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .hero-points {
+      display: grid;
+      gap: 16px;
+      margin: 34px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hero-points li {
+      display: grid;
+      grid-template-columns: 18px minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      color: var(--navy-700);
+      font-size: 1.02rem;
+      font-weight: 500;
+    }
+
+    .hero-points li::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border: 3px solid var(--purple-600);
+      border-radius: 50%;
+    }
+
+    .mock-card {
+      position: relative;
+      min-height: 430px;
+    }
+
+    .schedule-card,
+    .floating-card,
+    .mini-card {
+      border-radius: 20px;
+      background: var(--white);
+      box-shadow: 0 28px 80px rgba(104, 41, 246, 0.14);
+    }
+
+    .schedule-card {
+      position: relative;
+      padding: 26px;
+      overflow: hidden;
+    }
+
+    .schedule-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 110px;
+      background: linear-gradient(135deg, rgba(104, 41, 246, 0.12), rgba(38, 208, 225, 0.08));
+    }
+
+    .mock-tabs {
+      position: relative;
+      display: flex;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .mock-tab {
+      min-width: 98px;
+      padding: 11px 18px;
+      border-radius: 999px;
+      color: var(--purple-600);
+      background: var(--white);
+      border: 1px solid rgba(104, 41, 246, 0.28);
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .mock-tab.active {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
+      box-shadow: var(--shadow-purple);
+    }
+
+    .mock-date {
+      position: relative;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      color: var(--navy-900);
+    }
+
+    .mock-date strong {
+      display: block;
+      font-size: 3rem;
+      line-height: 1;
+      font-weight: 300;
+    }
+
+    .mock-date span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .mock-row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 58px minmax(0, 1fr);
+      gap: 12px;
+      align-items: stretch;
+      min-height: 78px;
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .mock-time {
+      color: var(--navy-700);
+      font-weight: 800;
+    }
+
+    .mock-event {
+      padding: 14px 16px;
+      border-left: 4px solid var(--cyan-500);
+      border-radius: 2px 14px 14px 2px;
+      background: rgba(38, 208, 225, 0.12);
+    }
+
+    .mock-event.red {
+      border-left-color: var(--red);
+      background: var(--red-bg);
+    }
+
+    .mock-event.amber {
+      border-left-color: var(--amber);
+      background: var(--amber-bg);
+    }
+
+    .mock-event strong {
+      display: block;
+      color: var(--navy-900);
+      font-weight: 780;
+    }
+
+    .mock-event span {
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 650;
+    }
+
+    .floating-card {
+      position: absolute;
+      left: 0;
+      bottom: 48px;
+      width: 290px;
+      padding: 22px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
+      box-shadow: var(--shadow-purple);
+    }
+
+    .floating-card strong {
+      display: block;
+      font-size: 0.98rem;
+      line-height: 1.35;
+    }
+
+    .floating-card span {
+      display: block;
+      margin-top: 10px;
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 0.86rem;
+    }
+
+    .mini-card {
+      position: absolute;
+      right: 0;
+      bottom: -18px;
+      width: 220px;
+      padding: 20px;
+      color: var(--navy-900);
+    }
+
+    .mini-card b {
+      display: block;
+      color: var(--purple-650);
+      font-size: 3.3rem;
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .mini-card span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(390px, 440px);
+      gap: 26px;
+      align-items: start;
+      margin-top: 12px;
+    }
+
+    .executive-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .executive-card,
+    .action-panel,
+    .drawer-panel {
+      background: var(--white);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .executive-card {
+      position: relative;
+      display: flex;
+      min-height: 360px;
+      width: 100%;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      border-radius: var(--radius);
+      text-align: left;
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .executive-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 70px rgba(71, 42, 150, 0.16);
+    }
+
+    .executive-card:focus-visible,
+    .drawer-close:focus-visible {
+      outline: none;
+      box-shadow: var(--focus);
+    }
+
+    .card-accent {
+      height: 116px;
+      padding: 24px 24px 20px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
+    }
+
+    .executive-card:nth-child(2) .card-accent {
+      background: linear-gradient(135deg, #17bfd3, #30d6e5);
+    }
+
+    .executive-card:nth-child(3) .card-accent {
+      background: linear-gradient(135deg, #fb5bb8, #8a39f7);
+    }
+
+    .card-inner {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 1.3rem;
+      line-height: 1.16;
+      font-weight: 780;
+    }
+
+    .card-subtitle {
+      display: block;
+      margin-top: 6px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.9rem;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+
+    .status-badge,
+    .priority-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .status-badge {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .status-red {
+      color: var(--red);
+      background: var(--red-bg);
+    }
+
+    .status-amber {
+      color: var(--amber);
+      background: var(--amber-bg);
+    }
+
+    .status-green {
+      color: var(--green);
+      background: var(--green-bg);
+    }
+
+    .card-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 18px;
+      padding: 22px 24px 24px;
+    }
+
+    .rag-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 11px;
+    }
+
+    .rag-item {
+      min-width: 0;
+      padding: 13px 12px;
+      border-radius: 14px;
+      background: var(--soft);
+    }
+
+    .rag-count {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--navy-900);
+      font-size: 1.28rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .dot.red {
+      background: var(--red);
+    }
+
+    .dot.amber {
+      background: var(--amber);
+    }
+
+    .rag-label {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .highlights {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .highlights li {
+      display: grid;
+      grid-template-columns: 12px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      color: var(--navy-700);
+      font-size: 0.91rem;
+      font-weight: 600;
+    }
+
+    .highlights .dot {
+      margin-top: 6px;
+    }
+
+    .money-note {
+      padding: 14px 15px;
+      border-radius: 16px;
+      color: var(--navy-900);
+      background: linear-gradient(135deg, #fff2f5, #ffffff);
+      box-shadow: inset 4px 0 0 var(--red);
+      font-weight: 800;
+    }
+
+    .money-note span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 650;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      color: var(--purple-600);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .action-panel {
+      position: sticky;
+      top: 18px;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 24px 26px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
+    }
+
+    .panel-head h2 {
+      margin: 0;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      font-weight: 780;
+    }
+
+    .panel-head p {
+      margin: 6px 0 0;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 0.9rem;
+      font-weight: 650;
+    }
+
+    .action-list {
+      display: grid;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .action-item {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: 14px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .priority-number {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
+      font-size: 0.88rem;
+      font-weight: 850;
+    }
+
+    .action-main {
+      min-width: 0;
+    }
+
+    .priority-badge {
+      margin-bottom: 8px;
+      color: var(--amber);
+      background: var(--amber-bg);
+      text-transform: uppercase;
+    }
+
+    .priority-badge.priority-high {
+      color: var(--red);
+      background: var(--red-bg);
+    }
+
+    .action-main h3 {
+      margin: 0;
+      color: var(--navy-900);
+      font-size: 0.95rem;
+      line-height: 1.38;
+      font-weight: 780;
+    }
+
+    .action-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 13px;
+      font-size: 0.77rem;
+    }
+
+    .action-meta strong {
+      display: block;
+      color: var(--muted);
+      font-size: 0.66rem;
+      font-weight: 850;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .action-meta em {
+      display: block;
+      margin-top: 3px;
+      color: var(--navy-700);
+      font-style: normal;
+      font-weight: 750;
+      overflow-wrap: anywhere;
+    }
+
+    .drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      background: rgba(20, 41, 74, 0.46);
+    }
+
+    .drawer.is-open {
+      display: block;
+    }
+
+    .drawer-panel {
+      position: absolute;
+      inset: 24px 24px 24px auto;
+      width: min(760px, calc(100% - 48px));
+      overflow: auto;
+      border-radius: 24px;
+    }
+
+    .drawer-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 28px 30px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
+    }
+
+    .drawer-head h2 {
+      margin: 0;
+      font-size: 1.65rem;
+      line-height: 1.12;
+      font-weight: 780;
+    }
+
+    .drawer-head p {
+      margin: 8px 0 0;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 0.92rem;
+      font-weight: 650;
+    }
+
+    .drawer-close {
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 50%;
+      color: var(--white);
+      background: transparent;
+      cursor: pointer;
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .drawer-body {
+      padding: 24px;
+      background: var(--soft);
+    }
+
+    .drawer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .drawer-section {
+      padding: 20px;
+      border-radius: 18px;
+      background: var(--white);
+      box-shadow: 0 12px 30px rgba(71, 42, 150, 0.07);
+    }
+
+    .drawer-section.full {
+      grid-column: 1 / -1;
+    }
+
+    .drawer-section h3 {
+      margin: 0 0 11px;
+      color: var(--navy-900);
+      font-size: 0.95rem;
+      font-weight: 850;
+    }
+
+    .drawer-section p {
+      margin: 0;
+      color: var(--navy-700);
+      font-size: 0.94rem;
+    }
+
+    .drawer-list {
+      display: grid;
+      gap: 11px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .drawer-list li {
+      display: grid;
+      grid-template-columns: 12px minmax(0, 1fr);
+      gap: 10px;
+      color: var(--navy-700);
+      font-size: 0.88rem;
+    }
+
+    .drawer-list .dot {
+      margin-top: 7px;
+    }
+
+    .drawer-list strong {
+      display: block;
+      color: var(--navy-900);
+    }
+
+    .drawer-list span span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+    }
+
+    .data-error {
+      margin: 22px 0;
+      padding: 18px;
+      border-radius: 16px;
+      color: var(--red);
+      background: var(--red-bg);
+      font-weight: 750;
+    }
+
+    @media (max-width: 1220px) {
+      .hero,
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .mock-card {
+        max-width: 620px;
+      }
+
+      .executive-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .executive-card {
+        min-height: auto;
+      }
+
+      .action-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .app-shell {
+        width: min(100% - 24px, 1440px);
+        padding-top: 16px;
+      }
+
+      .top-nav,
+      .nav-meta {
+        align-items: stretch;
+      }
+
+      .top-nav {
+        flex-direction: column;
+      }
+
+      .nav-meta {
+        justify-content: flex-start;
+      }
+
+      .nav-pill,
+      .risk-pill {
+        width: 100%;
+      }
+
+      .hero {
+        gap: 26px;
+        margin-bottom: 24px;
+      }
+
+      .hero-summary {
+        font-size: 1rem;
+      }
+
+      .mock-card {
+        min-height: 0;
+      }
+
+      .schedule-card {
+        padding: 18px;
+      }
+
+      .mock-tabs {
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .floating-card,
+      .mini-card {
+        position: static;
+        width: auto;
+        margin-top: 14px;
+      }
+
+      .executive-card {
+        border-radius: 16px;
+      }
+
+      .card-accent,
+      .card-body,
+      .panel-head,
+      .action-item {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .rag-row,
+      .action-meta,
+      .drawer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .drawer-panel {
+        inset: 0;
+        width: 100%;
+        border-radius: 0;
+      }
+
+      .drawer-head {
+        padding: 22px 18px;
+      }
+
+      .drawer-body {
+        padding: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .executive-card {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="top-nav" aria-label="CareOps demo header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          CareOps
+          <small>Systems by LionTech Innovations</small>
+        </span>
+      </div>
+      <div class="nav-meta">
+        <span class="nav-pill">Demo provider: <strong id="providerName">&nbsp;Brightway Homecare</strong></span>
+        <span class="nav-pill" id="weekLabel">Week of Mon 9 Jun</span>
+        <span class="risk-pill">Provider Risk: <strong id="providerRisk">&nbsp;Amber</strong></span>
+      </div>
+    </header>
+
+    <section class="hero" aria-labelledby="pageTitle">
+      <div class="hero-copy">
+        <span class="client-label">Care provider briefing</span>
+        <h1 id="pageTitle">CareOps Command <strong>Centre</strong></h1>
+        <p class="hero-summary">3 things need attention this week. Nothing changes in your current systems - CareOps shows what is missing, overdue and at risk.</p>
+        <ul class="hero-points">
+          <li>See missing evidence, overdue checks and unfilled shifts in plain English.</li>
+          <li>Follow up private enquiries before they become missed opportunities.</li>
+          <li>Open each area to see what the Readiness Sprint would organise.</li>
+        </ul>
+      </div>
+
+      <div class="mock-card" aria-hidden="true">
+        <div class="schedule-card">
+          <div class="mock-tabs">
+            <span class="mock-tab active">This week</span>
+            <span class="mock-tab">People</span>
+            <span class="mock-tab active">Attention</span>
+          </div>
+          <div class="mock-date">
+            <span><strong>09</strong>Jun</span>
+            <span>Brightway Homecare</span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-time">Today</span>
+            <span class="mock-event red"><strong>Private enquiry unanswered</strong><span>24+ hours - needs follow up</span></span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-time">Tue</span>
+            <span class="mock-event amber"><strong>Cover to confirm</strong><span>Leeds South evening visits</span></span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-time">Fri</span>
+            <span class="mock-event"><strong>Evidence present</strong><span>Recent compliance file found</span></span>
+          </div>
+        </div>
+        <div class="floating-card">
+          <strong>1 private enquiry unanswered for 24+ hours</strong>
+          <span>Possible lost revenue if not followed up</span>
+        </div>
+        <div class="mini-card">
+          <b>5</b>
+          <span>actions for this week</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard" aria-label="CareOps executive dashboard">
+      <div class="executive-grid" id="executiveGrid"></div>
+
+      <aside class="action-panel" aria-labelledby="actionPlanTitle">
+        <div class="panel-head">
+          <div>
+            <h2 id="actionPlanTitle">This Week's Action Plan</h2>
+            <p>Top 5 actions for the provider team.</p>
+          </div>
+          <span class="status-badge">Amber</span>
+        </div>
+        <ol class="action-list" id="actionList"></ol>
+      </aside>
+    </section>
+
+    <div class="data-error" id="dataError" hidden>
+      Could not load data/mock.json. Start a local static server from this folder and reload the page.
+    </div>
+  </main>
+
+  <div class="drawer" id="detailDrawer" aria-hidden="true">
+    <section class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <header class="drawer-head">
+        <div>
+          <h2 id="drawerTitle">Module detail</h2>
+          <p id="drawerSubtitle"></p>
+        </div>
+        <button class="drawer-close" type="button" id="drawerClose" aria-label="Close detail drawer">&times;</button>
+      </header>
+      <div class="drawer-body">
+        <div class="drawer-grid" id="drawerContent"></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const STATUS_WEIGHT = { red: 0, amber: 1, green: 2 };
+
+    let groups = [];
+
+    function key(status) {
+      return String(status || 'Green').toLowerCase();
+    }
+
+    function escapeHtml(value) {
+      return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function countsFor(items) {
+      return items.reduce((counts, item) => {
+        counts[key(item.status)] += 1;
+        return counts;
+      }, { red: 0, amber: 0, green: 0 });
+    }
+
+    function groupStatus(items) {
+      const counts = countsFor(items);
+      if (counts.red) return 'red';
+      if (counts.amber) return 'amber';
+      return 'green';
+    }
+
+    function statusLabel(status) {
+      if (status === 'red') return 'Needs attention';
+      if (status === 'amber') return 'Due soon';
+      return 'On track';
+    }
+
+    function dot(status) {
+      return '<span class="dot ' + status + '" aria-hidden="true"></span>';
+    }
+
+    function normalise(source, module, title, context) {
+      return {
+        id: source.id,
+        module,
+        title,
+        context,
+        issue: source.issue || 'No action needed this week.',
+        action: source.action_text || 'No action needed this week.',
+        due: source.due_label || '',
+        status: source.status || 'Green',
+        rank: Number(source.rank || 99),
+        raw: source
+      };
+    }
+
+    function buildGroups(data) {
+      const staff = (data.staff || []).map((item) => normalise(
+        item,
+        'Staff Readiness',
+        item.name,
+        item.role + ' - ' + item.area + ' - ' + item.readiness
+      ));
+
+      const training = (data.training || []).map((item) => normalise(
+        item,
+        'Training',
+        item.staff_name,
+        item.course + ' - due ' + item.due_date
+      ));
+
+      const dbs = (data.dbs || []).map((item) => normalise(
+        item,
+        'DBS',
+        item.staff_name,
+        item.certificate_level + ' - due ' + item.due_date
+      ));
+
+      const references = (data.references || []).map((item) => normalise(
+        item,
+        'References',
+        item.person_name,
+        item.reference_type + ' - ' + item.stage
+      ));
+
+      const applicants = (data.applicants || []).map((item) => normalise(
+        item,
+        'Recruitment',
+        item.name,
+        item.role_applied + ' - ' + item.stage
+      ));
+
+      const compliance = (data.compliance || []).map((item) => normalise(
+        item,
+        'Compliance Evidence',
+        item.evidence_area,
+        item.recency + ' - last present ' + item.last_present
+      ));
+
+      const rota = (data.rota_gaps || []).map((item) => normalise(
+        item,
+        'Rota Gaps',
+        item.date + ' - ' + item.time,
+        item.area + ' - ' + item.visits_affected + ' unfilled shift' + (item.visits_affected === 1 ? '' : 's')
+      ));
+
+      const enquiries = (data.enquiries || []).map((item) => normalise(
+        item,
+        'Enquiries',
+        item.type,
+        item.source + ' - ' + item.area + ' - ' + item.received
+      ));
+
+      const referrals = (data.referrals || []).map((item) => normalise(
+        item,
+        'Referrals',
+        item.source,
+        item.area + ' - ' + item.stage
+      ));
+
+      return [
+        {
+          id: 'people',
+          title: 'People & Compliance',
+          subtitle: 'Staff readiness, training, DBS and references.',
+          items: [...staff, ...training, ...dbs, ...references, ...applicants, ...compliance],
+          labels: ['missing or overdue', 'due soon', 'ready or present'],
+          highlights: (items) => [
+            firstIssue(items, 'red', 'No missing staff evidence found.'),
+            firstIssue(items, 'amber', 'No upcoming evidence dates found.'),
+            readyStaffLine(data.staff || [])
+          ],
+          problemSummary: (items) => problemSummary(items, 'People and compliance'),
+          sprintItems: [
+            'Staff file gap list',
+            'Training and DBS date check',
+            'Reference follow-up list',
+            'Weekly manager action pack'
+          ]
+        },
+        {
+          id: 'operations',
+          title: 'Operations & Rota',
+          subtitle: 'Rota gaps, unfilled shifts and weekly cover risks.',
+          items: rota,
+          labels: ['unfilled shifts', 'cover to confirm', 'covered'],
+          highlights: (items) => rotaHighlights(items),
+          problemSummary: (items) => rotaProblemSummary(items),
+          sprintItems: [
+            'Seven-day rota gap review',
+            'Unfilled shift follow-up list',
+            'Cover confirmation routine',
+            'Manager close-loop notes'
+          ]
+        },
+        {
+          id: 'growth',
+          title: 'Enquiries & Growth',
+          subtitle: 'Missed enquiries, private enquiries and referrals.',
+          items: [...enquiries, ...referrals],
+          labels: ['unanswered', 'needs follow up', 'in progress'],
+          highlights: (items) => growthHighlights(items),
+          problemSummary: () => '1 private enquiry unanswered for 24+ hours. Possible lost revenue if not followed up.',
+          sprintItems: [
+            'Enquiry follow-up process',
+            'Response time standards',
+            'Referral tracking and follow up',
+            'Weekly pipeline overview'
+          ],
+          moneyMoment: true
+        }
+      ];
+    }
+
+    function firstIssue(items, status, fallback) {
+      const match = items.find((item) => key(item.status) === status);
+      return match ? match.issue : fallback;
+    }
+
+    function readyStaffLine(staff) {
+      const ready = staff.filter((item) => key(item.status) === 'green').length;
+      return ready + ' staff ready to work';
+    }
+
+    function rotaHighlights(items) {
+      const affected = items
+        .filter((item) => key(item.status) !== 'green')
+        .reduce((sum, item) => sum + Number(item.raw.visits_affected || 0), 0);
+      return [
+        affected + ' unfilled shift' + (affected === 1 ? '' : 's') + ' need attention',
+        firstIssue(items, 'amber', 'No cover confirmation due soon.'),
+        'Weekly cover risk is visible'
+      ];
+    }
+
+    function growthHighlights(items) {
+      const privateLost = items.find((item) => item.raw.response_state === 'Lost');
+      const referral = items.find((item) => item.module === 'Referrals' && key(item.status) !== 'green');
+      return [
+        privateLost ? '1 private enquiry unanswered for 24+ hours' : 'No private enquiry is overdue.',
+        referral ? '1 referral needs follow up' : 'No referral follow-up due this week.',
+        'Possible lost revenue if not followed up'
+      ];
+    }
+
+    function problemSummary(items, label) {
+      const counts = countsFor(items);
+      const active = counts.red + counts.amber;
+      if (!active) return label + ' is green this week. Nothing needs attention.';
+      return active + ' ' + label.toLowerCase() + ' item' + (active === 1 ? '' : 's') + ' need attention this week.';
+    }
+
+    function rotaProblemSummary(items) {
+      const counts = countsFor(items);
+      const affected = items
+        .filter((item) => key(item.status) !== 'green')
+        .reduce((sum, item) => sum + Number(item.raw.visits_affected || 0), 0);
+      return counts.red + ' unfilled shift item' + (counts.red === 1 ? '' : 's') + ' and ' + counts.amber + ' cover item' + (counts.amber === 1 ? '' : 's') + ' need attention. ' + affected + ' visit' + (affected === 1 ? '' : 's') + ' are affected.';
+    }
+
+    function renderHeader(data) {
+      const provider = data.provider || {};
+      document.getElementById('providerName').textContent = provider.name || 'Brightway Homecare';
+      document.getElementById('weekLabel').textContent = provider.week_label || 'Week of Mon 9 Jun';
+      document.getElementById('providerRisk').textContent = provider.risk || 'Amber';
+    }
+
+    function renderCards() {
+      const grid = document.getElementById('executiveGrid');
+      grid.innerHTML = groups.map((group) => {
+        const counts = countsFor(group.items);
+        const status = groupStatus(group.items);
+        const highlights = group.highlights(group.items).slice(0, 3);
+        const moneyNote = group.moneyMoment
+          ? '<div class="money-note">1 private enquiry unanswered for 24+ hours<span>Possible lost revenue if not followed up</span></div>'
+          : '';
+        return [
+          '<button class="executive-card" type="button" data-group-id="' + group.id + '" aria-label="Open ' + escapeHtml(group.title) + ' detail">',
+            '<span class="card-inner">',
+              '<span class="card-accent">',
+                '<span class="card-top">',
+                  '<span><h2 class="card-title">' + escapeHtml(group.title) + '</h2><span class="card-subtitle">' + escapeHtml(group.subtitle) + '</span></span>',
+                  '<span class="status-badge">' + statusLabel(status) + '</span>',
+                '</span>',
+              '</span>',
+              '<span class="card-body">',
+                '<span class="rag-row" aria-label="' + escapeHtml(group.title) + ' status counts">',
+                  ragItem('red', counts.red, group.labels[0]),
+                  ragItem('amber', counts.amber, group.labels[1]),
+                  ragItem('green', counts.green, group.labels[2]),
+                '</span>',
+                moneyNote,
+                '<ul class="highlights">',
+                  highlights.map((text, index) => '<li>' + dot(index === 0 ? 'red' : index === 1 ? 'amber' : 'green') + '<span>' + escapeHtml(text) + '</span></li>').join(''),
+                '</ul>',
+                '<span class="card-footer">Open detail -&gt;</span>',
+              '</span>',
+            '</span>',
+          '</button>'
+        ].join('');
+      }).join('');
+    }
+
+    function ragItem(status, count, label) {
+      return '<span class="rag-item"><span class="rag-count">' + dot(status) + escapeHtml(count) + '</span><span class="rag-label">' + escapeHtml(label) + '</span></span>';
+    }
+
+    function buildActionPlan() {
+      return groups
+        .flatMap((group) => group.items.map((item) => ({ ...item, groupTitle: group.title })))
+        .filter((item) => ['red', 'amber'].includes(key(item.status)) && item.action !== 'No action needed this week.')
+        .sort((a, b) => STATUS_WEIGHT[key(a.status)] - STATUS_WEIGHT[key(b.status)] || a.rank - b.rank)
+        .slice(0, 5)
+        .map((item, index) => {
+          const parts = splitOwnerAndTask(item.action);
+          return {
+            priorityNumber: index + 1,
+            priority: key(item.status) === 'red' ? 'High' : 'Medium',
+            owner: parts.owner,
+            task: parts.task,
+            due: item.due || (key(item.status) === 'red' ? 'Today' : 'This week'),
+            source: item.module
+          };
+        });
+    }
+
+    function splitOwnerAndTask(action) {
+      const splitAt = action.indexOf(':');
+      if (splitAt === -1) {
+        return { owner: 'Provider team', task: action };
+      }
+      const owner = action.slice(0, splitAt).trim();
+      const task = action.slice(splitAt + 1).trim();
+      return {
+        owner: owner || 'Provider team',
+        task: sentenceCase(task || action)
+      };
+    }
+
+    function sentenceCase(text) {
+      return text ? text.charAt(0).toUpperCase() + text.slice(1) : text;
+    }
+
+    function renderActions() {
+      const list = document.getElementById('actionList');
+      list.innerHTML = buildActionPlan().map((action) => [
+        '<li class="action-item">',
+          '<span class="priority-number">' + action.priorityNumber + '</span>',
+          '<span class="action-main">',
+            '<span class="priority-badge priority-' + action.priority.toLowerCase() + '">' + action.priority + '</span>',
+            '<h3>' + escapeHtml(action.task) + '</h3>',
+            '<span class="action-meta">',
+              meta('Owner', action.owner),
+              meta('Due', action.due),
+              meta('Source', action.source),
+            '</span>',
+          '</span>',
+        '</li>'
+      ].join('')).join('');
+    }
+
+    function meta(label, value) {
+      return '<span><strong>' + escapeHtml(label) + '</strong><em>' + escapeHtml(value) + '</em></span>';
+    }
+
+    function openDrawer(groupId) {
+      const group = groups.find((entry) => entry.id === groupId);
+      if (!group) return;
+      const attentionItems = group.items
+        .filter((item) => ['red', 'amber'].includes(key(item.status)))
+        .sort((a, b) => STATUS_WEIGHT[key(a.status)] - STATUS_WEIGHT[key(b.status)] || a.rank - b.rank)
+        .slice(0, 7);
+
+      document.getElementById('drawerTitle').textContent = group.title;
+      document.getElementById('drawerSubtitle').textContent = group.subtitle;
+      document.getElementById('drawerContent').innerHTML = [
+        drawerSection('Problem summary', '<p>' + escapeHtml(group.problemSummary(group.items)) + '</p>'),
+        drawerSection('Recommended next action', '<p>' + escapeHtml(buildRecommendedAction(group, attentionItems)) + '</p>'),
+        drawerSection('Affected people/items', affectedList(attentionItems), true),
+        drawerSection('What CareOps would organise during the Readiness Sprint', sprintList(group.sprintItems), true)
+      ].join('');
+
+      const drawer = document.getElementById('detailDrawer');
+      drawer.classList.add('is-open');
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('drawerClose').focus();
+    }
+
+    function buildRecommendedAction(group, items) {
+      if (group.id === 'growth') {
+        return 'Follow up with the private enquiry today, record the outcome, and check the open referral before the week closes.';
+      }
+      if (group.id === 'operations') {
+        return 'Confirm cover for every unfilled shift and record who owns each follow-up before visits start.';
+      }
+      const first = items[0];
+      return first ? splitOwnerAndTask(first.action).task : 'Keep the weekly evidence view up to date.';
+    }
+
+    function drawerSection(title, body, full) {
+      return '<section class="drawer-section' + (full ? ' full' : '') + '"><h3>' + escapeHtml(title) + '</h3>' + body + '</section>';
+    }
+
+    function affectedList(items) {
+      if (!items.length) {
+        return '<p>Nothing needs attention in this area this week.</p>';
+      }
+      return '<ul class="drawer-list">' + items.map((item) => [
+        '<li>',
+          dot(key(item.status)),
+          '<span><strong>' + escapeHtml(item.title) + '</strong><span>' + escapeHtml(item.module + ' - ' + item.context) + '</span><span>' + escapeHtml(item.issue) + '</span></span>',
+        '</li>'
+      ].join('')).join('') + '</ul>';
+    }
+
+    function sprintList(items) {
+      return '<ul class="drawer-list">' + items.map((item) => '<li>' + dot('amber') + '<span>' + escapeHtml(item) + '</span></li>').join('') + '</ul>';
+    }
+
+    function closeDrawer() {
+      const drawer = document.getElementById('detailDrawer');
+      drawer.classList.remove('is-open');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    async function loadData() {
+      const response = await fetch('./data/mock.json', { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error('data/mock.json returned ' + response.status);
+      }
+      const data = await response.json();
+      document.documentElement.dataset.careopsDataSource = 'data/mock.json';
+      return data;
+    }
+
+    function render(data) {
+      groups = buildGroups(data);
+      renderHeader(data);
+      renderCards();
+      renderActions();
+    }
+
+    document.getElementById('executiveGrid').addEventListener('click', (event) => {
+      const card = event.target.closest('[data-group-id]');
+      if (card) openDrawer(card.getAttribute('data-group-id'));
+    });
+
+    document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+    document.getElementById('detailDrawer').addEventListener('click', (event) => {
+      if (event.target.id === 'detailDrawer') closeDrawer();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeDrawer();
+    });
+
+    loadData()
+      .then(render)
+      .catch((error) => {
+        console.error(error);
+        document.getElementById('dataError').hidden = false;
+      });
+  </script>
+</body>
+</html>
