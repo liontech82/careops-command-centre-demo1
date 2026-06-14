@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
   <title>CareOps Command Centre Demo</title>
   <style>
     :root {
-      --purple-700: #4b16e8;
-      --purple-650: #5a22f0;
-      --purple-600: #6829f6;
-      --purple-500: #8236f6;
-      --cyan-500: #26d0e1;
-      --pink-500: #f252ad;
+      --purple-700: #4f2fc6;
+      --purple-650: #5e3bd2;
+      --purple-600: #6b45dc;
+      --purple-500: #8060e5;
+      --cyan-500: #22bfce;
+      --pink-500: #d95bb1;
       --navy-900: #14294a;
       --navy-700: #284160;
       --muted: #8a95a6;
@@ -26,7 +27,7 @@
       --green: #27a86f;
       --green-bg: #edf9f2;
       --shadow-soft: 0 18px 44px rgba(71, 42, 150, 0.10);
-      --shadow-purple: 0 24px 60px rgba(92, 34, 240, 0.24);
+      --shadow-purple: 0 20px 48px rgba(91, 55, 206, 0.18);
       --radius: 18px;
       --focus: 0 0 0 4px rgba(104, 41, 246, 0.22);
     }
@@ -44,8 +45,8 @@
       margin: 0;
       color: var(--navy-900);
       background:
-        radial-gradient(circle at 72% 18%, rgba(104, 41, 246, 0.14), transparent 30%),
-        linear-gradient(180deg, #ffffff 0 190px, var(--soft) 190px 100%);
+        radial-gradient(circle at 72% 16%, rgba(107, 69, 220, 0.10), transparent 28%),
+        linear-gradient(180deg, #ffffff 0 168px, var(--soft) 168px 100%);
       font-family: "Segoe UI", Arial, Helvetica, sans-serif;
       line-height: 1.45;
     }
@@ -57,15 +58,15 @@
     .app-shell {
       width: min(1440px, calc(100% - 44px));
       margin: 0 auto;
-      padding: 24px 0 52px;
+      padding: 18px 0 44px;
     }
 
     .top-nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 22px;
-      margin-bottom: 42px;
+      gap: 18px;
+      margin-bottom: 26px;
     }
 
     .brand {
@@ -126,8 +127,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 40px;
-      padding: 8px 18px;
+      min-height: 38px;
+      padding: 7px 17px;
       border: 1px solid var(--line);
       border-radius: 999px;
       color: var(--navy-700);
@@ -153,9 +154,9 @@
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
-      gap: 44px;
+      gap: 32px;
       align-items: center;
-      margin-bottom: 34px;
+      margin-bottom: 24px;
     }
 
     .hero-copy {
@@ -166,7 +167,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
       color: var(--purple-600);
       font-size: 0.88rem;
       font-weight: 800;
@@ -183,7 +184,7 @@
     .hero h1 {
       margin: 0;
       color: var(--navy-900);
-      font-size: clamp(2.3rem, 4.6vw, 5.25rem);
+      font-size: clamp(2.1rem, 3.8vw, 4.55rem);
       line-height: 1.06;
       font-weight: 300;
       letter-spacing: 0;
@@ -196,18 +197,18 @@
     }
 
     .hero-summary {
-      margin: 24px 0 0;
+      margin: 16px 0 0;
       max-width: 650px;
       color: var(--muted);
-      font-size: 1.15rem;
-      line-height: 1.7;
+      font-size: 1.06rem;
+      line-height: 1.58;
       font-weight: 400;
     }
 
     .hero-points {
       display: grid;
-      gap: 16px;
-      margin: 34px 0 0;
+      gap: 12px;
+      margin: 22px 0 0;
       padding: 0;
       list-style: none;
     }
@@ -218,7 +219,7 @@
       gap: 14px;
       align-items: center;
       color: var(--navy-700);
-      font-size: 1.02rem;
+      font-size: 0.98rem;
       font-weight: 500;
     }
 
@@ -232,7 +233,7 @@
 
     .mock-card {
       position: relative;
-      min-height: 430px;
+      min-height: 372px;
     }
 
     .schedule-card,
@@ -240,12 +241,12 @@
     .mini-card {
       border-radius: 20px;
       background: var(--white);
-      box-shadow: 0 28px 80px rgba(104, 41, 246, 0.14);
+      box-shadow: 0 24px 62px rgba(91, 55, 206, 0.12);
     }
 
     .schedule-card {
       position: relative;
-      padding: 26px;
+      padding: 22px;
       overflow: hidden;
     }
 
@@ -253,20 +254,20 @@
       content: "";
       position: absolute;
       inset: 0 0 auto;
-      height: 110px;
-      background: linear-gradient(135deg, rgba(104, 41, 246, 0.12), rgba(38, 208, 225, 0.08));
+      height: 98px;
+      background: linear-gradient(135deg, rgba(107, 69, 220, 0.10), rgba(34, 191, 206, 0.08));
     }
 
     .mock-tabs {
       position: relative;
       display: flex;
       gap: 10px;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
 
     .mock-tab {
-      min-width: 98px;
-      padding: 11px 18px;
+      min-width: 96px;
+      padding: 10px 17px;
       border-radius: 999px;
       color: var(--purple-600);
       background: var(--white);
@@ -288,13 +289,13 @@
       align-items: end;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
       color: var(--navy-900);
     }
 
     .mock-date strong {
       display: block;
-      font-size: 3rem;
+      font-size: 2.6rem;
       line-height: 1;
       font-weight: 300;
     }
@@ -312,8 +313,8 @@
       grid-template-columns: 58px minmax(0, 1fr);
       gap: 12px;
       align-items: stretch;
-      min-height: 78px;
-      padding: 10px 0;
+      min-height: 64px;
+      padding: 8px 0;
       border-top: 1px solid var(--line);
     }
 
@@ -323,7 +324,7 @@
     }
 
     .mock-event {
-      padding: 14px 16px;
+      padding: 12px 14px;
       border-left: 4px solid var(--cyan-500);
       border-radius: 2px 14px 14px 2px;
       background: rgba(38, 208, 225, 0.12);
@@ -354,9 +355,9 @@
     .floating-card {
       position: absolute;
       left: 0;
-      bottom: 48px;
+      bottom: 40px;
       width: 290px;
-      padding: 22px;
+      padding: 18px;
       color: var(--white);
       background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
       box-shadow: var(--shadow-purple);
@@ -378,16 +379,16 @@
     .mini-card {
       position: absolute;
       right: 0;
-      bottom: -18px;
-      width: 220px;
-      padding: 20px;
+      bottom: -10px;
+      width: 204px;
+      padding: 18px;
       color: var(--navy-900);
     }
 
     .mini-card b {
       display: block;
       color: var(--purple-650);
-      font-size: 3.3rem;
+      font-size: 2.85rem;
       line-height: 1;
       font-weight: 800;
     }
@@ -404,7 +405,7 @@
       grid-template-columns: minmax(0, 1fr) minmax(390px, 440px);
       gap: 26px;
       align-items: start;
-      margin-top: 12px;
+      margin-top: 8px;
     }
 
     .executive-grid {
@@ -453,11 +454,11 @@
     }
 
     .executive-card:nth-child(2) .card-accent {
-      background: linear-gradient(135deg, #17bfd3, #30d6e5);
+      background: linear-gradient(135deg, #20b5c4, #35cad7);
     }
 
     .executive-card:nth-child(3) .card-accent {
-      background: linear-gradient(135deg, #fb5bb8, #8a39f7);
+      background: linear-gradient(135deg, #d95bb1, #8060e5);
     }
 
     .card-inner {
@@ -617,11 +618,27 @@
       font-weight: 650;
     }
 
-    .card-footer {
+    .details-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
       margin-top: auto;
-      color: var(--purple-600);
+      min-height: 38px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      color: var(--purple-650);
+      background: #f4f0ff;
       font-size: 0.9rem;
       font-weight: 800;
+      transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .executive-card:hover .details-pill,
+    .executive-card:focus-visible .details-pill {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
+      transform: translateY(-1px);
     }
 
     .action-panel {
@@ -796,6 +813,33 @@
       background: var(--soft);
     }
 
+    .drawer-actions {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 18px;
+    }
+
+    .drawer-back {
+      min-height: 42px;
+      padding: 9px 18px;
+      border: 0;
+      border-radius: 999px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
+      cursor: pointer;
+      font-weight: 800;
+      box-shadow: var(--shadow-purple);
+    }
+
+    .drawer-back:hover {
+      transform: translateY(-1px);
+    }
+
+    .drawer-back:focus-visible {
+      outline: none;
+      box-shadow: var(--focus);
+    }
+
     .drawer-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -914,12 +958,16 @@
       }
 
       .hero {
-        gap: 26px;
-        margin-bottom: 24px;
+        gap: 22px;
+        margin-bottom: 22px;
       }
 
       .hero-summary {
         font-size: 1rem;
+      }
+
+      .hero-points {
+        margin-top: 20px;
       }
 
       .mock-card {
@@ -975,6 +1023,41 @@
       }
     }
 
+    @media (max-width: 560px) {
+      body {
+        background:
+          radial-gradient(circle at 75% 18%, rgba(107, 69, 220, 0.10), transparent 35%),
+          linear-gradient(180deg, #ffffff 0 190px, var(--soft) 190px 100%);
+      }
+
+      .app-shell {
+        width: min(100% - 24px, 1440px);
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 12vw, 3rem);
+      }
+
+      .card-accent {
+        height: auto;
+        min-height: 112px;
+      }
+
+      .action-item {
+        grid-template-columns: 38px minmax(0, 1fr);
+      }
+
+      .priority-number {
+        width: 34px;
+        height: 34px;
+      }
+
+      .details-pill,
+      .drawer-back {
+        width: 100%;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .executive-card {
         transition: none;
@@ -1003,7 +1086,7 @@
       <div class="hero-copy">
         <span class="client-label">Care provider briefing</span>
         <h1 id="pageTitle">CareOps Command <strong>Centre</strong></h1>
-        <p class="hero-summary">3 things need attention this week. Nothing changes in your current systems - CareOps shows what is missing, overdue and at risk.</p>
+        <p class="hero-summary"><span id="attentionSummary">3 things need attention this week.</span> Nothing changes in your current systems - CareOps shows what is missing, overdue and at risk.</p>
         <ul class="hero-points">
           <li>See missing evidence, overdue checks and unfilled shifts in plain English.</li>
           <li>Follow up private enquiries before they become missed opportunities.</li>
@@ -1019,12 +1102,12 @@
             <span class="mock-tab active">Attention</span>
           </div>
           <div class="mock-date">
-            <span><strong>09</strong>Jun</span>
+            <span><strong id="mockDay">09</strong><span id="mockMonth">Jun</span></span>
             <span>Brightway Homecare</span>
           </div>
           <div class="mock-row">
             <span class="mock-time">Today</span>
-            <span class="mock-event red"><strong>Private enquiry unanswered</strong><span>24+ hours - needs follow up</span></span>
+            <span class="mock-event red"><strong>Private enquiry unanswered</strong><span id="mockPrivateDuration">Needs follow up</span></span>
           </div>
           <div class="mock-row">
             <span class="mock-time">Tue</span>
@@ -1036,11 +1119,11 @@
           </div>
         </div>
         <div class="floating-card">
-          <strong>1 private enquiry unanswered for 24+ hours</strong>
-          <span>Possible lost revenue if not followed up</span>
+          <strong id="floatingEnquiry">1 private enquiry unanswered for 24+ hours</strong>
+          <span>Potential missed opportunity if not followed up.</span>
         </div>
         <div class="mini-card">
-          <b>5</b>
+          <b id="floatingActionCount">5</b>
           <span>actions for this week</span>
         </div>
       </div>
@@ -1053,7 +1136,7 @@
         <div class="panel-head">
           <div>
             <h2 id="actionPlanTitle">This Week's Action Plan</h2>
-            <p>Top 5 actions for the provider team.</p>
+            <p id="actionPlanSummary">Top 5 actions for the provider team.</p>
           </div>
           <span class="status-badge">Amber</span>
         </div>
@@ -1077,6 +1160,9 @@
       </header>
       <div class="drawer-body">
         <div class="drawer-grid" id="drawerContent"></div>
+        <div class="drawer-actions">
+          <button class="drawer-back" type="button" id="drawerBack">Back to overview</button>
+        </div>
       </div>
     </section>
   </div>
@@ -1104,6 +1190,39 @@
         counts[key(item.status)] += 1;
         return counts;
       }, { red: 0, amber: 0, green: 0 });
+    }
+
+    function formatCount(count, singular, plural) {
+      const safeCount = Number(count || 0);
+      return safeCount + ' ' + (safeCount === 1 ? singular : (plural || singular + 's'));
+    }
+
+    function attentionVerb(count) {
+      return Number(count || 0) === 1 ? 'needs' : 'need';
+    }
+
+    function totalAffectedVisits(items) {
+      return items
+        .filter((item) => key(item.status) !== 'green')
+        .reduce((sum, item) => sum + Number(item.raw.visits_affected || 0), 0);
+    }
+
+    function privateUnansweredItems(items) {
+      return items.filter((item) => (
+        item.module === 'Enquiries' &&
+        key(item.status) !== 'green' &&
+        String(item.raw.type || '').toLowerCase().includes('private')
+      ));
+    }
+
+    function privateUnansweredLine(items) {
+      const privateItems = privateUnansweredItems(items);
+      const duration = privateItems[0]?.raw.unanswered_for || '24+ hours';
+      return formatCount(privateItems.length, 'private enquiry', 'private enquiries') + ' unanswered for ' + duration;
+    }
+
+    function opportunityLine() {
+      return 'Potential missed opportunity if not followed up.';
     }
 
     function groupStatus(items) {
@@ -1206,9 +1325,17 @@
         {
           id: 'people',
           title: 'People & Compliance',
-          subtitle: 'Staff readiness, training, DBS and references.',
+          subtitle: 'Staff readiness, training, DBS and references that need checking.',
           items: [...staff, ...training, ...dbs, ...references, ...applicants, ...compliance],
           labels: ['missing or overdue', 'due soon', 'ready or present'],
+          stats: (items) => {
+            const counts = countsFor(items);
+            return [
+              { status: 'red', count: counts.red, label: 'missing or overdue' },
+              { status: 'amber', count: counts.amber, label: 'due soon' },
+              { status: 'green', count: counts.green, label: 'ready or present' }
+            ];
+          },
           highlights: (items) => [
             firstIssue(items, 'red', 'No missing staff evidence found.'),
             firstIssue(items, 'amber', 'No upcoming evidence dates found.'),
@@ -1225,13 +1352,21 @@
         {
           id: 'operations',
           title: 'Operations & Rota',
-          subtitle: 'Rota gaps, unfilled shifts and weekly cover risks.',
+          subtitle: 'Rota gaps, unfilled shifts and weekly cover to confirm.',
           items: rota,
           labels: ['unfilled shifts', 'cover to confirm', 'covered'],
+          stats: (items) => {
+            const counts = countsFor(items);
+            return [
+              { status: 'red', count: totalAffectedVisits(items), label: 'unfilled shifts' },
+              { status: 'amber', count: counts.amber, label: 'cover to confirm' },
+              { status: 'green', count: counts.green, label: 'covered' }
+            ];
+          },
           highlights: (items) => rotaHighlights(items),
           problemSummary: (items) => rotaProblemSummary(items),
           sprintItems: [
-            'Seven-day rota gap review',
+            'Weekly rota gap review',
             'Unfilled shift follow-up list',
             'Cover confirmation routine',
             'Manager close-loop notes'
@@ -1240,11 +1375,19 @@
         {
           id: 'growth',
           title: 'Enquiries & Growth',
-          subtitle: 'Missed enquiries, private enquiries and referrals.',
+          subtitle: 'Private enquiries and referrals that need follow up.',
           items: [...enquiries, ...referrals],
           labels: ['unanswered', 'needs follow up', 'in progress'],
+          stats: (items) => {
+            const counts = countsFor(items);
+            return [
+              { status: 'red', count: privateUnansweredItems(items).length, label: 'unanswered' },
+              { status: 'amber', count: counts.amber, label: 'needs follow up' },
+              { status: 'green', count: counts.green, label: 'in progress' }
+            ];
+          },
           highlights: (items) => growthHighlights(items),
-          problemSummary: () => '1 private enquiry unanswered for 24+ hours. Possible lost revenue if not followed up.',
+          problemSummary: (items) => privateUnansweredLine(items) + '. ' + opportunityLine(),
           sprintItems: [
             'Enquiry follow-up process',
             'Response time standards',
@@ -1267,23 +1410,21 @@
     }
 
     function rotaHighlights(items) {
-      const affected = items
-        .filter((item) => key(item.status) !== 'green')
-        .reduce((sum, item) => sum + Number(item.raw.visits_affected || 0), 0);
+      const affected = totalAffectedVisits(items);
       return [
-        affected + ' unfilled shift' + (affected === 1 ? '' : 's') + ' need attention',
+        formatCount(affected, 'unfilled shift') + ' ' + attentionVerb(affected) + ' attention',
         firstIssue(items, 'amber', 'No cover confirmation due soon.'),
         'Weekly cover risk is visible'
       ];
     }
 
     function growthHighlights(items) {
-      const privateLost = items.find((item) => item.raw.response_state === 'Lost');
-      const referral = items.find((item) => item.module === 'Referrals' && key(item.status) !== 'green');
+      const privateCount = privateUnansweredItems(items).length;
+      const referralCount = items.filter((item) => item.module === 'Referrals' && key(item.status) !== 'green').length;
       return [
-        privateLost ? '1 private enquiry unanswered for 24+ hours' : 'No private enquiry is overdue.',
-        referral ? '1 referral needs follow up' : 'No referral follow-up due this week.',
-        'Possible lost revenue if not followed up'
+        privateCount ? privateUnansweredLine(items) : 'No private enquiry is overdue.',
+        referralCount ? formatCount(referralCount, 'referral') + ' ' + attentionVerb(referralCount) + ' follow up' : 'No referral follow-up due this week.',
+        opportunityLine()
       ];
     }
 
@@ -1296,10 +1437,8 @@
 
     function rotaProblemSummary(items) {
       const counts = countsFor(items);
-      const affected = items
-        .filter((item) => key(item.status) !== 'green')
-        .reduce((sum, item) => sum + Number(item.raw.visits_affected || 0), 0);
-      return counts.red + ' unfilled shift item' + (counts.red === 1 ? '' : 's') + ' and ' + counts.amber + ' cover item' + (counts.amber === 1 ? '' : 's') + ' need attention. ' + affected + ' visit' + (affected === 1 ? '' : 's') + ' are affected.';
+      const affected = totalAffectedVisits(items);
+      return formatCount(affected, 'unfilled shift') + ' ' + attentionVerb(affected) + ' attention. ' + formatCount(counts.amber, 'cover item') + ' ' + attentionVerb(counts.amber) + ' confirming this week.';
     }
 
     function renderHeader(data) {
@@ -1307,6 +1446,11 @@
       document.getElementById('providerName').textContent = provider.name || 'Brightway Homecare';
       document.getElementById('weekLabel').textContent = provider.week_label || 'Week of Mon 9 Jun';
       document.getElementById('providerRisk').textContent = provider.risk || 'Amber';
+      const demoDate = provider.demo_today ? new Date(provider.demo_today + 'T00:00:00') : null;
+      if (demoDate && !Number.isNaN(demoDate.valueOf())) {
+        document.getElementById('mockDay').textContent = String(demoDate.getDate()).padStart(2, '0');
+        document.getElementById('mockMonth').textContent = demoDate.toLocaleString('en-GB', { month: 'short' });
+      }
     }
 
     function renderCards() {
@@ -1314,9 +1458,10 @@
       grid.innerHTML = groups.map((group) => {
         const counts = countsFor(group.items);
         const status = groupStatus(group.items);
+        const stats = group.stats(group.items);
         const highlights = group.highlights(group.items).slice(0, 3);
         const moneyNote = group.moneyMoment
-          ? '<div class="money-note">1 private enquiry unanswered for 24+ hours<span>Possible lost revenue if not followed up</span></div>'
+          ? '<div class="money-note">' + escapeHtml(privateUnansweredLine(group.items)) + '<span>' + escapeHtml(opportunityLine()) + '</span></div>'
           : '';
         return [
           '<button class="executive-card" type="button" data-group-id="' + group.id + '" aria-label="Open ' + escapeHtml(group.title) + ' detail">',
@@ -1329,15 +1474,13 @@
               '</span>',
               '<span class="card-body">',
                 '<span class="rag-row" aria-label="' + escapeHtml(group.title) + ' status counts">',
-                  ragItem('red', counts.red, group.labels[0]),
-                  ragItem('amber', counts.amber, group.labels[1]),
-                  ragItem('green', counts.green, group.labels[2]),
+                  stats.map((stat) => ragItem(stat.status, stat.count, stat.label)).join(''),
                 '</span>',
                 moneyNote,
                 '<ul class="highlights">',
                   highlights.map((text, index) => '<li>' + dot(index === 0 ? 'red' : index === 1 ? 'amber' : 'green') + '<span>' + escapeHtml(text) + '</span></li>').join(''),
                 '</ul>',
-                '<span class="card-footer">Open detail -&gt;</span>',
+                '<span class="details-pill">Open details</span>',
               '</span>',
             '</span>',
           '</button>'
@@ -1386,8 +1529,10 @@
     }
 
     function renderActions() {
+      const actions = buildActionPlan();
+      document.getElementById('actionPlanSummary').textContent = 'Top ' + formatCount(actions.length, 'action') + ' for the provider team.';
       const list = document.getElementById('actionList');
-      list.innerHTML = buildActionPlan().map((action) => [
+      list.innerHTML = actions.map((action) => [
         '<li class="action-item">',
           '<span class="priority-number">' + action.priorityNumber + '</span>',
           '<span class="action-main">',
@@ -1436,7 +1581,7 @@
         return 'Follow up with the private enquiry today, record the outcome, and check the open referral before the week closes.';
       }
       if (group.id === 'operations') {
-        return 'Confirm cover for every unfilled shift and record who owns each follow-up before visits start.';
+        return 'Confirm cover for ' + formatCount(totalAffectedVisits(group.items), 'unfilled shift') + ' and record who owns each follow-up before visits start.';
       }
       const first = items[0];
       return first ? splitOwnerAndTask(first.action).task : 'Keep the weekly evidence view up to date.';
@@ -1484,6 +1629,12 @@
       renderHeader(data);
       renderCards();
       renderActions();
+      const attentionCount = groups.filter((group) => groupStatus(group.items) !== 'green').length;
+      document.getElementById('attentionSummary').textContent = formatCount(attentionCount, 'thing') + ' ' + attentionVerb(attentionCount) + ' attention this week.';
+      const growthGroup = groups.find((group) => group.id === 'growth');
+      document.getElementById('floatingEnquiry').textContent = growthGroup ? privateUnansweredLine(growthGroup.items) : 'No private enquiries overdue';
+      document.getElementById('mockPrivateDuration').textContent = growthGroup ? privateUnansweredLine(growthGroup.items).replace(/^\d+ private enquiries? unanswered for /, '') + ' - needs follow up' : 'Needs follow up';
+      document.getElementById('floatingActionCount').textContent = buildActionPlan().length;
     }
 
     document.getElementById('executiveGrid').addEventListener('click', (event) => {
@@ -1492,6 +1643,7 @@
     });
 
     document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+    document.getElementById('drawerBack').addEventListener('click', closeDrawer);
     document.getElementById('detailDrawer').addEventListener('click', (event) => {
       if (event.target.id === 'detailDrawer') closeDrawer();
     });

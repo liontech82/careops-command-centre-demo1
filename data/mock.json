@@ -260,6 +260,7 @@
       "type": "Private care enquiry",
       "area": "Roundhay",
       "received": "Fri 6 Jun 16:20",
+      "unanswered_for": "24+ hours",
       "response_state": "Lost",
       "status": "Red",
       "issue": "Private enquiry was not answered before the family chose another provider.",
